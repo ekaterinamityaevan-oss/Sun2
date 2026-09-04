@@ -1,0 +1,109 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Unbounded", "Manrope", system-ui, sans-serif;
+  --font-body: "Manrope", "Segoe UI", system-ui, sans-serif;
+
+  --color-space-950: #050810;
+  --color-space-900: #0a101f;
+  --color-space-850: #0d1428;
+  --color-space-800: #101830;
+  --color-solar-200: #ffe4ad;
+  --color-solar-300: #ffd27a;
+  --color-solar-400: #f5b445;
+  --color-solar-500: #e0912b;
+}
+
+body {
+  margin: 0;
+  overflow: hidden;
+  background: #050810;
+  color: #dbe4f5;
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: rgba(245, 180, 69, 0.35);
+}
+
+/* ---------- speed slider ---------- */
+.speed-range {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 4px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, rgba(245, 180, 69, 0.95), rgba(245, 180, 69, 0.18));
+  outline: none;
+  cursor: pointer;
+}
+.speed-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: #ffd27a;
+  border: 2px solid #0a101f;
+  box-shadow: 0 0 0 3px rgba(245, 180, 69, 0.22), 0 0 14px rgba(245, 180, 69, 0.55);
+  transition: transform 0.15s ease;
+}
+.speed-range::-webkit-slider-thumb:hover { transform: scale(1.25); }
+.speed-range::-moz-range-thumb {
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: #ffd27a;
+  border: 2px solid #0a101f;
+  box-shadow: 0 0 0 3px rgba(245, 180, 69, 0.22), 0 0 14px rgba(245, 180, 69, 0.55);
+}
+.speed-range:focus-visible {
+  box-shadow: 0 0 0 3px rgba(245, 180, 69, 0.3);
+}
+
+/* ---------- animations ---------- */
+@keyframes panelIn {
+  from { opacity: 0; transform: translateX(40px); }
+  to   { opacity: 1; transform: none; }
+}
+@media (max-width: 767px) {
+  @keyframes panelIn {
+    from { opacity: 0; transform: translateY(40px); }
+    to   { opacity: 1; transform: none; }
+  }
+}
+.panel-in { animation: panelIn 0.5s cubic-bezier(0.22, 1, 0.36, 1) both; }
+
+@keyframes swapIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: none; }
+}
+.swap-in { animation: swapIn 0.35s ease both; }
+
+@keyframes barIn {
+  from { opacity: 0; transform: translateY(26px); }
+  to   { opacity: 1; transform: none; }
+}
+.bar-in { animation: barIn 0.7s 0.15s cubic-bezier(0.22, 1, 0.36, 1) both; }
+
+@keyframes headIn {
+  from { opacity: 0; transform: translateY(-16px); }
+  to   { opacity: 1; transform: none; }
+}
+.head-in { animation: headIn 0.8s 0.05s cubic-bezier(0.22, 1, 0.36, 1) both; }
+
+@keyframes hintPulse {
+  0%, 100% { opacity: 0.55; transform: scale(1); }
+  50%      { opacity: 1;    transform: scale(1.35); }
+}
+.hint-dot { animation: hintPulse 1.8s ease-in-out infinite; }
+
+/* ---------- scrollbars ---------- */
+.chips-scroll { scrollbar-width: thin; scrollbar-color: rgba(255, 255, 255, 0.16) transparent; }
+.chips-scroll::-webkit-scrollbar { height: 5px; }
+.chips-scroll::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.14); border-radius: 999px; }
+.chips-scroll::-webkit-scrollbar-track { background: transparent; }
+
+.panel-scroll { scrollbar-width: thin; scrollbar-color: rgba(255, 255, 255, 0.14) transparent; }
+.panel-scroll::-webkit-scrollbar { width: 7px; }
+.panel-scroll::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.12); border-radius: 999px; }
+.panel-scroll::-webkit-scrollbar-track { background: transparent; }
